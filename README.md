@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Gaming Deal & Wishlist Budget Tracker (Deal Hunter) 🎮
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
-## Available Scripts
+¡Hola! 👋 **Deal Hunter** es una aplicación web interactiva diseñada para rastrear ofertas de videojuegos en tiempo real mediante la **API de CheapShark**, gestionar una lista de deseos (*wishlist*) personalizada y controlar la asignación de presupuesto sin exceder tu límite de gasto.
 
-In the project directory, you can run:
+🔗 **Demo en vivo:** [Ver Deal Hunter desplegado](https://dealhunterebac.netlify.app/)
 
-### `npm start`
+## ✨ Características Principales
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Búsqueda de Ofertas con API Real y Debounce:** Consumo de ofertas de videojuegos a través de `cheapSharkApi.js`, optimizado con el hook personalizado `useDebounce` para reducir peticiones innecesarias al escribir en la barra de búsqueda.
+* **Control de Presupuesto en Tiempo Real:** Cálculo automático de saldo disponible, gasto acumulado y alertas de presupuesto respaldado por las utilidades de `budgetHelpers.js`.
+* **Estado Global Modular:** Manejo centralizado de ofertas y lista de deseos mediante `dealsSlice.js` y `wishlistSlice.js` en Redux Toolkit.
+* **Navegación Multipágina:** Vistas dedicadas para el catálogo principal (`HomePage`), detalle de cada juego (`GameDetailPage`) y gestión de lista de deseos (`WishlistPage`) con React Router.
+* **Arquitectura de Estilos Desacoplada:** Estilos globales (`GlobalStyles.js`), tema centralizado (`theme.js`) y archivos `.styles.js` independientes para cada componente y página.
+* **Pruebas Unitarias Completas en Jest:** Suites dedicadas para helpers de presupuesto, componentes, slices de Redux y el hook `useDebounce`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tecnologías Utilizadas
 
-### `npm test`
+* **React & JavaScript (ES6+):** Componentes funcionales y hooks personalizados (`useDebounce`).
+* **Redux Toolkit:** Administración del estado global (`store.js`, `dealsSlice.js`, `wishlistSlice.js`).
+* **React Router:** Enrutamiento del lado del cliente entre inicio, detalle de juego y wishlist.
+* **Styled-Components:** Estilizado modular por componente con soporte de tema global.
+* **CheapShark API:** Fuente de datos en tiempo real de descuentos de videojuegos.
+* **Jest & React Testing Library:** Pruebas unitarias de lógica, hooks, estado y componentes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📂 Estructura del Proyecto
 
-### `npm run build`
+```text
+react-deal-hunter/
+├── public/
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── __tests__/
+│   │   ├── budgetHelpers.test.js   # Pruebas de cálculo de presupuesto
+│   │   ├── components.test.jsx     # Pruebas de renderizado e interacción de componentes
+│   │   ├── reduxSlices.test.js     # Pruebas de reducers y acciones de Redux Toolkit
+│   │   └── useDebounce.test.js     # Pruebas del hook personalizado useDebounce
+│   ├── api/
+│   │   └── cheapSharkApi.js        # Cliente y consumo de la API de CheapShark
+│   ├── components/
+│   │   ├── DealCard/
+│   │   │   ├── DealCard.jsx
+│   │   │   └── DealCard.styles.js
+│   │   ├── Navbar/
+│   │   │   ├── Navbar.jsx
+│   │   │   └── Navbar.styles.js
+│   │   └── SearchBar/
+│   │       ├── SearchBar.jsx
+│   │       └── SearchBar.styles.js
+│   ├── hooks/
+│   │   └── useDebounce.js          # Hook para retrasar búsquedas en tiempo real
+│   ├── pages/
+│   │   ├── GameDetailPage/
+│   │   │   ├── GameDetailPage.jsx
+│   │   │   └── GameDetailPage.styles.js
+│   │   ├── HomePage/
+│   │   │   ├── HomePage.jsx
+│   │   │   └── HomePage.styles.js
+│   │   └── WishlistPage/
+│   │       ├── WishlistPage.jsx
+│   │       └── WishlistPage.styles.js
+│   ├── redux/
+│   │   ├── slices/
+│   │   │   ├── dealsSlice.js
+│   │   │   └── wishlistSlice.js
+│   │   └── store.js
+│   ├── styles/
+│   │   ├── GlobalStyles.js
+│   │   └── theme.js
+│   ├── utils/
+│   │   └── budgetHelpers.js        # Funciones auxiliares de presupuesto y totales
+│   ├── App.js
+│   └── index.js
+├── .gitignore
+├── README.md
+├── package-lock.json
+└── package.json
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Instalación y Uso
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/ernestzent/react-deal-hunter.git
+   cd react-deal-hunter
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Instala las dependencias:**
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+3. **Inicia el servidor de desarrollo:**
+   ```bash
+   npm start
+   ```
+   Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Ejecuta todas las pruebas unitarias:**
+   ```bash
+   npm test
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. **Genera el build de producción:**
+   ```bash
+   npm run build
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 💡 Ejemplos de Uso
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Explorar y Buscar Ofertas:** En `HomePage`, utiliza la barra `SearchBar` para buscar cualquier título; `useDebounce` esperará unos milisegundos tras dejar de escribir antes de consultar `cheapSharkApi.js`.
+2. **Consultar Detalles:** Haz clic en cualquier `DealCard` para abrir `GameDetailPage` y revisar el precio original, descuento y detalles del juego.
+3. **Administrar Presupuesto y Wishlist:** Agrega tus juegos favoritos a la lista y entra a `WishlistPage` para definir tu límite de presupuesto y verificar el cálculo en tiempo real gestionado por `wishlistSlice.js` y `budgetHelpers.js`.
 
-## Learn More
+## 🤝 Contribuciones
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Las contribuciones, reportes de errores y mejoras son bienvenidas:
+1. Haz un *Fork* del repositorio.
+2. Crea tu rama (`git checkout -b feature/filtro-tiendas`).
+3. Guarda tus cambios (`git commit -m 'Agrega filtro por tienda digital'`).
+4. Sube tu rama (`git push origin feature/filtro-tiendas`).
+5. Abre un *Pull Request* asegurándote de que pasen las 4 suites de pruebas en `src/__tests__/`.
